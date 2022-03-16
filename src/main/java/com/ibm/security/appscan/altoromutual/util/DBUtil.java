@@ -244,16 +244,18 @@ public class DBUtil {
 		String firstName = null;
 		String lastName = null;
 		String roleString = null;
+		String password = null;
 		if (resultSet.next()){
 			firstName = resultSet.getString("FIRST_NAME");
 			lastName = resultSet.getString("LAST_NAME");
+			password = resultSet.getString("PASSWORD");
 			roleString = resultSet.getString("ROLE");
 		}
 		
 		if (firstName == null || lastName == null)
 			return null;
 		
-		User user = new User(username, firstName, lastName);
+		User user = new User(username, firstName, lastName, password);
 		
 		if (roleString.equalsIgnoreCase("admin"))
 			user.setRole(Role.Admin);
