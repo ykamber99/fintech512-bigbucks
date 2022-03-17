@@ -1,10 +1,10 @@
 package com.ibm.security.appscan.altoromutual.servlet;
 
 import java.io.*;
-import java.sql.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
+import com.ibm.security.appscan.altoromutual.dao.SignupDao;
 import com.ibm.security.appscan.altoromutual.model.User;
 
 

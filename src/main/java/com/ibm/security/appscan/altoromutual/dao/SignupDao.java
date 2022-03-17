@@ -1,6 +1,5 @@
-package com.ibm.security.appscan.altoromutual.servlet;
+package com.ibm.security.appscan.altoromutual.dao;
 
-import java.util.*;
 import java.sql.*;
 
 import com.ibm.security.appscan.altoromutual.model.User;
