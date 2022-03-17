@@ -10,35 +10,82 @@
 <jsp:include page="/header.jspf"/>
 
 <div id="wrapper" style="width: 99%;">
-    <from action="#" method="POST">
-        <table>
-            <! first line：firstname + space for first name -->
-            <tr>
-                <td class="td_left"><lable for="First Name">First Name</lable></td>
-                <td class=""td_right><input type="text" name="firstname" id="firstname" placeholder="Please enter first name"></td>
-            </tr>
-            <! second line：lastname + space for last name -->
-            <tr>
-                <td class="td_left"><lable for="Last Name">Last Name</lable></td>
-                <td class=""td_right><input type="text" name="lastname" id="lastname" placeholder="Please enter last name"></td>
-            </tr>
-            <! 表格第一行两个单元格：用户名+输入用户名区域 -->
-            <tr>
-                <td class="td_left"><lable for="username">User Name</lable></td>
-                <td class=""td_right><input type="text" name="username" id="username" placeholder="Please enter username"></td>
-            </tr>
-            <! 表格第二行两个单元格：密码+输入密码区域 -->
-            <tr>
-                <td class="td_left"><lable for="password">Password</lable></td>
-                <td class=""td_right><input type="password" name="password" id="password" placeholder="Please enter password"></td>
-            </tr>
+    <jsp:include page="/toc.jspf"/>
+    <td valign="top" colspan="3" class="bb">
+        <div class="fl" style="width: 99%;">
 
-            <!-- 注册按钮 -->
-            <tr>
-                <td colspan="2" align=""center><input type="submit" id="btn_sub" value="Sign Up"></td>
-            </tr>
-        </table>
-    </from>
+            <h1>Online Banking Sign Up</h1>
+
+            <form action="doSignup" method="post" name="signup" id="signup" onsubmit="return (confirminput(signup));">
+                <table>
+                    <tr>
+                        <td>
+                            First Name:
+                        </td>
+                        <td>
+                            <input type="text" id="new_first" name="new_first" value="" style="width: 150px;">
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last Name:
+                        </td>
+                        <td>
+                            <input type="text" id="new_last" name="new_last" style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Username:
+                        </td>
+                        <td>
+                            <input type="text" id="new_uid" name="new_uid" style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Password:
+                        </td>
+                        <td>
+                            <input type="password" id="new_passw" name="new_passw" style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" name="btnSubmit" value="Sign up">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <script type="text/javascript">
+            function confirminput(myform) {
+                if (myform.new_first.value.length && myform.new_last.value.length && myform.new_uid.value.length && myform.new_passw.value.length) {
+                    return (true);
+                } else if (!(myform.new_first.value.length)) {
+                    myform.reset();
+                    myform.new_first.focus();
+                    alert ("You must enter a valid first name");
+                    return (false);
+                } else if (!(myform.new_last.value.length)) {
+                    myform.new_last.focus();
+                    alert ("You must enter a valid last name");
+                    return (false);
+                } else if (!(myform.new_uid.value.length)) {
+                    myform.new_uid.focus();
+                    alert("You must enter a valid username");
+                    return (false);
+                } else {
+                    myform.new_passw.focus();
+                    alert ("You must enter a valid password");
+                    return (false);
+                }
+            }
+        </script>
+    </td>
 </div>
 
 <jsp:include page="/footer.jspf"/>

@@ -86,6 +86,15 @@
   </servlet>
   <servlet>
     <description>
+    </description>
+    <display-name>
+      SignupServlet</display-name>
+    <servlet-name>SignupServlet</servlet-name>
+    <servlet-class>
+      com.ibm.security.appscan.altoromutual.servlet.SignupServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>
 		</description>
     <display-name>
 		AccountViewServlet</display-name>
@@ -163,6 +172,10 @@
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/logout.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SignupServlet</servlet-name>
+    <url-pattern>/doSignup</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AccountViewServlet</servlet-name>

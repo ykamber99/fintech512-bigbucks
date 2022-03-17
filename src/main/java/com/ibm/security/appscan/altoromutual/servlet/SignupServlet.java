@@ -16,10 +16,10 @@ public class SignupServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
 
-        String username = request.getParameter("username");
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String passwd = request.getParameter("passwd");
+        String firstName = request.getParameter("new_first");
+        String lastName = request.getParameter("new_last");
+        String username = request.getParameter("new_uid");
+        String passwd = request.getParameter("new_passw");
 
         if(username==null) {
             username = "";
