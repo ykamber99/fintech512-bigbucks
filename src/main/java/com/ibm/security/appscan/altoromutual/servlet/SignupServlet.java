@@ -39,18 +39,18 @@ public class SignupServlet extends HttpServlet {
                     message = error;
             }
 
-            if (message != null)
+            if (message != null) {
                 message = "Error: " + message;
+                response.sendRedirect("signup.jsp");
+                return;
+            }
             else
                 message = "Requested operation has completed successfully.";
-
-            request.getSession().setAttribute("message", message);
         } catch (Exception e2) {
             response.sendRedirect("signup.jsp");
             return;
         }
-        System.out.println(message);
-        response.sendRedirect("signup.jsp");
+        response.sendRedirect("login.jsp");
         return;
     }
 
