@@ -4,49 +4,54 @@ import java.io.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-import com.ibm.security.appscan.altoromutual.dao.SignupDao;
+import com.ibm.security.appscan.altoromutual.util.DBUtil;
 import com.ibm.security.appscan.altoromutual.model.User;
 
 
 public class SignupServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String message = null;
 
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
-
-        String firstName = request.getParameter("new_first");
-        String lastName = request.getParameter("new_last");
-        String username = request.getParameter("new_uid");
-        String passwd = request.getParameter("new_passw");
-
-        if(username==null) {
-            username = "";
-        }
-        passwd = (passwd==null)? "" :passwd;
-        firstName = (firstName==null)? "" :firstName;
-        lastName = (lastName==null)? "" :lastName;
-
-        // 设置用户数据信息
-        User user = new User();
-        user.setUsername(username);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setPassword(passwd);
-
-        int status = 0;
         try {
-            status = SignupDao.save(user);
-            if (status > 0) {
-                out.print(":)...");
-            }else {
-                out.print(":(...");
+            String firstName = request.getParameter("new_first");
+            String lastName = request.getParameter("new_last");
+            String username = request.getParameter("new_uid");
+            String passwd = request.getParameter("new_passw");
+
+            if(username==null) {
+                username = "";
             }
+            passwd = (passwd==null)? "" :passwd;
+            firstName = (firstName==null)? "" :firstName;
+            lastName = (lastName==null)? "" :lastName;
+
+        /*
+            User user = new User();
+            user.setUsername(username);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setPassword(passwd);*/
+
+            if (message == null){
+                String error = DBUtil.addUser(username, passwd, firstName, lastName);
+
+                if (error != null)
+                    message = error;
+            }
+
+            if (message != null)
+                message = "Error: " + message;
+            else
+                message = "Requested operation has completed successfully.";
+
+            request.getSession().setAttribute("message", message);
         } catch (Exception e2) {
-            System.out.println(e2);
+            response.sendRedirect("signup.jsp");
+            return;
         }
-        out.close();
+        System.out.println(message);
+        response.sendRedirect("signup.jsp");
+        return;
     }
 
 }
