@@ -20,6 +20,19 @@
                 <table>
                     <tr>
                         <td>
+                            Role:
+                        </td>
+                        <td>
+                            <select name="role" id="role" value="" style="width: 150px;">
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             First Name:
                         </td>
                         <td>
@@ -53,6 +66,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            Re-confirmed Password:
+                        </td>
+                        <td>
+                            <input type="password" id="new_passw2" name="new_passw2" style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <input type="submit" name="btnSubmit" value="Sign up">
@@ -78,7 +99,7 @@
                     myform.new_uid.focus();
                     alert("You must enter a valid username");
                     return (false);
-                } else {
+                } else if ({
                     myform.new_passw.focus();
                     alert ("You must enter a valid password");
                     return (false);
